@@ -1,4 +1,6 @@
-import java.io.File
+import java.io.{File, PrintWriter}
+
+import scala.io.Source
 
 /**
  * @author 邱道长
@@ -35,13 +37,44 @@ object Main {
     }
     // 最后构建好SideBar
     //    构建好内容
-    createSideBarJson(bars)
+    val content = createSideBarJson(bars)
+    write(content = content)
 
   }
 
-  def createSideBarJson(bars: List[Bar]) = {
+  def createSideBarJson(bars: List[Bar]):String = {
     //    var sideBarStr = List.empty[String]
-    bars.foreach(barJson)
+    var list = List.empty[String]
+    bars.foreach(c => {
+      list = barJson(c)::list
+    })
+    var s1 = ""
+    for (e <- list) {
+      if (s1.equals("")) {
+        s1 +=
+          s"""${e},""".stripMargin
+      } else {
+        s1 +=
+          s"""
+             |${e},""".stripMargin
+      }
+    }
+    s1 = s1.dropRight(1)
+    s1
+  }
+
+
+  def write(file:String="out.txt",content:String): Unit = {
+    // 输出到file
+    val f = new File(file)
+    if(f== null || !f.exists()) {
+      // 创建文件
+      f.createNewFile()
+
+    }
+    val pw = new PrintWriter(f)
+    pw.write(content)
+    pw.close()
   }
 
 
@@ -57,10 +90,9 @@ object Main {
                 }
             ]
    */
-  def barJson(bar: Bar) = {
+  def barJson(bar: Bar): String = {
     var s = bar.path + ": ["
     val tab = " " * 4
-    val doubleTab = tab * 2
     val temp = bar.children.map(c => {
       s"""${tab}{
          |${tab * 2}title: '${c.title}',
@@ -79,11 +111,10 @@ object Main {
     })
     s3 = s3.dropRight(1)
     var s4 =
-    s"""'${bar.path}': [
-       |${s3}
-       |]""".stripMargin
-
-    println(s4)
+      s"""'${bar.path}': [
+         |${s3}
+         |]""".stripMargin
+    s4
   }
 
 
@@ -102,11 +133,13 @@ object Main {
       // 边栏的path
       val path = "/" + f.getName + "/"
       // 获取所有的子文件
+      // 不要解析readme.md
       for (c <- f.listFiles()) {
-        val name = c.getName.replace(".md", "")
-        val children = Children(name, name)
-        //        println(children)
-        childrens = children :: childrens
+        if(!c.getName.equalsIgnoreCase("README.md")) {
+          val name = c.getName.replace(".md", "")
+          val children = Children(name, name)
+          childrens = children :: childrens
+        }
       }
     }
     childrens
