@@ -1,6 +1,5 @@
 import java.io.{File, PrintWriter}
 
-import scala.io.Source
 
 /**
  * @author 邱道长
@@ -10,7 +9,6 @@ import scala.io.Source
 object Main {
 
   def main(args: Array[String]): Unit = {
-
     // 空的侧边栏列表
     var bars = List[Bar]()
     // 获取路径
@@ -18,7 +16,6 @@ object Main {
     // 获取根目录
     val root = new File(readPath)
     // 解析所有的文件和目录
-
     for {
       f <- root.listFiles
     } {
@@ -42,11 +39,11 @@ object Main {
 
   }
 
-  def createSideBarJson(bars: List[Bar]):String = {
+  def createSideBarJson(bars: List[Bar]): String = {
     //    var sideBarStr = List.empty[String]
     var list = List.empty[String]
     bars.foreach(c => {
-      list = barJson(c)::list
+      list = barJson(c) :: list
     })
     var s1 = ""
     for (e <- list) {
@@ -64,10 +61,10 @@ object Main {
   }
 
 
-  def write(file:String="out.txt",content:String): Unit = {
+  def write(file: String = "out.txt", content: String): Unit = {
     // 输出到file
     val f = new File(file)
-    if(f== null || !f.exists()) {
+    if (f == null || !f.exists()) {
       // 创建文件
       f.createNewFile()
 
@@ -77,19 +74,6 @@ object Main {
     pw.close()
   }
 
-
-  /*
-  '/blog/': [
-                {
-                    title: '博客1',
-                    path: 'blog1'
-                },
-                {
-                    title: '博客2',
-                    path: 'blog2'
-                }
-            ]
-   */
   def barJson(bar: Bar): String = {
     var s = bar.path + ": ["
     val tab = " " * 4
@@ -110,7 +94,7 @@ object Main {
       }
     })
     s3 = s3.dropRight(1)
-    var s4 =
+    val s4 =
       s"""'${bar.path}': [
          |${s3}
          |]""".stripMargin
@@ -135,7 +119,7 @@ object Main {
       // 获取所有的子文件
       // 不要解析readme.md
       for (c <- f.listFiles()) {
-        if(!c.getName.equalsIgnoreCase("README.md")) {
+        if (!c.getName.equalsIgnoreCase("README.md")) {
           val name = c.getName.replace(".md", "")
           val children = Children(name, name)
           childrens = children :: childrens
