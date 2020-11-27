@@ -38,7 +38,7 @@ object MainV2 {
     //    构建好内容
     val content = createSideBarJson(bars)
     //    write(content = content)
-    readConfig(readPath)
+    readConfig(readPath,content)
 
   }
 
@@ -63,33 +63,32 @@ object MainV2 {
       c <- list
       if !stop
     } {
-      lineNumber += 1
+      lineNumber += 1 //
       if (braceNum == 3) {
         // 结束
         stop = true
       }
       if (c.contains("}") && !c.contains("//") && !c.contains("*/") && !c.contains("/*")) {
 
-        println("执行。。。")
-        println(c)
+//        println("执行。。。")
+//        println(c)
         braceNum += 1
-        println("当前行 :" + lineNumber)
-        println("braceNum:" + braceNum)
+//        println("当前行 :" + lineNumber)
+//        println("braceNum:" + braceNum)
       }
 
     }
 //  无论如何都会多加一次，所以要先减去1
     lineNumber = lineNumber - 1
-    println("当前行" + lineNumber)
-    println("总行" + list.size)
+//    println("当前行" + lineNumber)
+//    println("总行" + list.size)
     list.size - (lineNumber-1)
   }
 
 
-  def readConfig(readPath: String): Unit = {
-    val root = new File(readPath)
+  def readConfig(readPath: String,content:String): Unit = {
+    val root = new java.io.File(readPath)
     //   root.listFiles().foreach(println)
-
     val ve = for {
       f <- root.listFiles
       if (f.isDirectory && f.getName.equals(".vuepress"))
@@ -100,8 +99,9 @@ object MainV2 {
     val cfg = vuepress.listFiles().filter(c => {
       c.getName.equals("config.js")
     }).take(1)(0)
+
     val lines = Source.fromFile(cfg).getLines()
-    println("lines " + lines)
+//    println("lines " + lines)
     var counter = 0
     var startLineNumber = 0
     var stop = false
@@ -114,15 +114,43 @@ object MainV2 {
         stop = true
       }
     }
-    println("起始行：" + startLineNumber)
+//    println("起始行：" + startLineNumber)
     //   lines 倒过来找第三个 }
     //   sidebar: { 作为删除开始
     // 从倒数第三个没有注释的 } 结束
 //    println(Source.fromFile(cfg).getLines())
 //    Source.fromFile(cfg).getLines().foreach(println)
     val endLine: Int = findDropEndLine(Source.fromFile(cfg).getLines()) // 之前的lines已经迭代用完了
-    println("结束行:" +  endLine)
+//    println("结束行:" +  endLine)
+    write(cfg,Source.fromFile(cfg).getLines().size, startLineNumber,endLine,content);
+  }
 
+
+
+  def write(cfg:File,length:Int,startLineNumber:Int,endLine:Int,content:String) = {
+    var lines = Source.fromFile(cfg).getLines()
+    val top = lines.slice(0,startLineNumber)
+    lines = Source.fromFile(cfg).getLines()
+    val bottom = lines.slice(endLine-1,length)
+    val mid = content
+//    top.foreach(println)
+//    println("111")
+//    println(content)
+//    println("222")
+//    bottom.foreach(println)
+    var finalContent = ""
+
+    top.foreach(c => {
+      finalContent += c + "\r\n"
+    })
+    finalContent += mid + "\r\n"
+    bottom.foreach(c => {
+      finalContent += c + "\r\n"
+    })
+//    println(finalContent)
+    val pw = new PrintWriter(cfg)
+    pw.write(finalContent)
+    pw.close()
   }
 
   //  def findDropEndLine()
@@ -162,18 +190,23 @@ object MainV2 {
     pw.close()
   }
 
+  // 三个引号，多行字符串
+//  java15 也引入了
   def barJson(bar: Bar): String = {
     var s = bar.path + ": ["
     val tab = " " * 4
     val temp = bar.children.map(c => {
-      s"""${tab}{
-         |${tab * 2}title: '${c.title}',
-         |${tab * 2}path: '${c.path}'
-         |${tab}}""".stripMargin
+      s"""${tab * 4}{
+         |${tab * 6}title: '${c.title}',
+         |${tab * 6}path: '${c.path}'
+         |${tab * 4}}""".stripMargin
     })
     var s3 = ""
+  temp.foreach(println)
+//  println(temp)
     temp.foreach(t => {
       if (s3.equals("")) {
+        // 调整的从第二个开始的 tab 不是这里
         s3 += s"""${t},""".stripMargin
       } else {
         s3 +=
@@ -182,11 +215,16 @@ object MainV2 {
       }
     })
     s3 = s3.dropRight(1)
+    println("s3")
+  println(s3)
     val s4 =
-      s"""'${bar.path}': [
+      s"""${tab * 3}'${bar.path}': [
          |${s3}
-         |]""".stripMargin
+         |${tab * 5}]""".stripMargin
     s4
+  println("s4")
+  println(s4)
+  s4
   }
 
 
@@ -196,7 +234,6 @@ object MainV2 {
 
   /**
    * 处理文件夹
-   *
    * @param f
    */
   def handleDirectory(f: File): List[Children] = {
@@ -227,7 +264,7 @@ object MainV2 {
     if (args.isEmpty) {
       "."
     } else {
-      args(0)
+      args(0)// 不是java风格的 args[0]
     }
   }
 }

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b2b02a30-1889-44a5-a738-1f58088fae86" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Children.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/Children.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainV2.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainV2.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.scala" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.1\plugins\maven\lib\maven3" />
+        <option name="userSettingsFile" value="D:\soft\build\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1ksH4hKoNHs7Zv36F4SqMkeUAnK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="D:/soft/sourcecode/scala/scala-2.12.12/src" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RunManager" selected="Application.Test">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="vue-sidebar-tool" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainV2" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="MainV2" />
+      <module name="vue-sidebar-tool" />
+      <option name="PROGRAM_PARAMETERS" value="C:\Users\dao\Desktop\test\vuepress\docs" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <module name="vue-sidebar-tool" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.MainV2" />
+      <item itemvalue="Application.Test" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.MainV2" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b2b02a30-1889-44a5-a738-1f58088fae86" name="Default Changelist" comment="" />
+      <created>1606482190193</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606482190193</updated>
+      <workItem from="1606482192081" duration="885000" />
+      <workItem from="1606483421366" duration="1579000" />
+      <workItem from="1606485066552" duration="81000" />
+      <workItem from="1606485160197" duration="2500000" />
+      <workItem from="1606487839281" duration="156000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="734" y="354" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606486470875">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="734" y="354" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606486470875" />
+    <state x="1023" y="614" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog" timestamp="1606482210214">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1023" y="614" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606482210214" />
+    <state x="960" y="434" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1606483613242">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="960" y="434" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606483613242" />
+    <state x="1057" y="569" key="DetectedRootsChooserDialog" timestamp="1606483495731">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1057" y="569" key="DetectedRootsChooserDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606483495731" />
+    <state x="1054" y="440" key="FileChooserDialogImpl" timestamp="1606483494702">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1054" y="440" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1606483494702" />
+    <state width="2517" height="492" key="GridCell.Tab.0.bottom" timestamp="1606487680418">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1606487680418" />
+    <state width="2517" height="492" key="GridCell.Tab.0.center" timestamp="1606487680417">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1606487680417" />
+    <state width="2517" height="492" key="GridCell.Tab.0.left" timestamp="1606487680417">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1606487680417" />
+    <state width="2517" height="492" key="GridCell.Tab.0.right" timestamp="1606487680417">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1606487680417" />
+    <state width="2517" height="492" key="GridCell.Tab.1.bottom" timestamp="1606487680418">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.1.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1606487680418" />
+    <state width="2517" height="492" key="GridCell.Tab.1.center" timestamp="1606487680418">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.1.center/0.0.2560.1400@0.0.2560.1400" timestamp="1606487680418" />
+    <state width="2517" height="492" key="GridCell.Tab.1.left" timestamp="1606487680418">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.1.left/0.0.2560.1400@0.0.2560.1400" timestamp="1606487680418" />
+    <state width="2517" height="492" key="GridCell.Tab.1.right" timestamp="1606487680418">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.1.right/0.0.2560.1400@0.0.2560.1400" timestamp="1606487680418" />
+    <state x="760" y="274" key="SettingsEditor" timestamp="1606485457809">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="760" y="274" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1606485457809" />
+    <state x="654" y="382" key="new project wizard" timestamp="1606485119828">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="654" y="382" key="new project wizard/0.0.2560.1400@0.0.2560.1400" timestamp="1606485119828" />
+    <state x="936" y="330" key="run.anything.popup" timestamp="1606485812144">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="936" y="330" key="run.anything.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1606485812144" />
+  </component>
+</project>

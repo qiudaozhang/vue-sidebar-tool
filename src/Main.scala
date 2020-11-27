@@ -1,5 +1,7 @@
 import java.io.{File, PrintWriter}
 
+import scala.::
+
 
 /**
  * @author 邱道长
