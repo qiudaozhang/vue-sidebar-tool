@@ -1,12 +1,14 @@
 import java.io.{File, PrintWriter}
 
+import scala.io.Source
+
 
 /**
  * @author 邱道长
  *         2020/11/27
- *         vue的侧边栏导航工具
+ *         vue的侧边栏导航工具，第二版，读取config.js文件
  */
-object Main {
+object MainV2 {
 
   def main(args: Array[String]): Unit = {
     // 空的侧边栏列表
@@ -35,9 +37,95 @@ object Main {
     // 最后构建好SideBar
     //    构建好内容
     val content = createSideBarJson(bars)
-    write(content = content)
+    //    write(content = content)
+    readConfig(readPath)
 
   }
+
+
+  /**
+   * 寻找满足的结束行
+   *
+   * @param lines
+   * @return
+   */
+  def findDropEndLine(lines: Iterator[String]): Int = {
+    var list = List.empty[String]
+
+    while(lines.hasNext) {
+      list = lines.next::list
+    }
+    println("总行数：" + list.size)
+    var lineNumber = 0
+    var braceNum = 0
+    var stop = false
+    for {
+      c <- list
+      if !stop
+    } {
+      lineNumber += 1
+      if (braceNum == 3) {
+        // 结束
+        stop = true
+      }
+      if (c.contains("}") && !c.contains("//") && !c.contains("*/") && !c.contains("/*")) {
+
+        println("执行。。。")
+        println(c)
+        braceNum += 1
+        println("当前行 :" + lineNumber)
+        println("braceNum:" + braceNum)
+      }
+
+    }
+//  无论如何都会多加一次，所以要先减去1
+    lineNumber = lineNumber - 1
+    println("当前行" + lineNumber)
+    println("总行" + list.size)
+    list.size - (lineNumber-1)
+  }
+
+
+  def readConfig(readPath: String): Unit = {
+    val root = new File(readPath)
+    //   root.listFiles().foreach(println)
+
+    val ve = for {
+      f <- root.listFiles
+      if (f.isDirectory && f.getName.equals(".vuepress"))
+    } yield f
+
+    val vuepress = ve.take(1)(0)
+    // 通过它获取config.js
+    val cfg = vuepress.listFiles().filter(c => {
+      c.getName.equals("config.js")
+    }).take(1)(0)
+    val lines = Source.fromFile(cfg).getLines()
+    println("lines " + lines)
+    var counter = 0
+    var startLineNumber = 0
+    var stop = false
+    for {line <- lines
+         if !stop
+         } {
+      counter += 1
+      if (line.contains("sidebar: {") && !line.contains("//") && !line.contains("/*")) {
+        startLineNumber = counter
+        stop = true
+      }
+    }
+    println("起始行：" + startLineNumber)
+    //   lines 倒过来找第三个 }
+    //   sidebar: { 作为删除开始
+    // 从倒数第三个没有注释的 } 结束
+//    println(Source.fromFile(cfg).getLines())
+//    Source.fromFile(cfg).getLines().foreach(println)
+    val endLine: Int = findDropEndLine(Source.fromFile(cfg).getLines()) // 之前的lines已经迭代用完了
+    println("结束行:" +  endLine)
+
+  }
+
+  //  def findDropEndLine()
 
   def createSideBarJson(bars: List[Bar]): String = {
     //    var sideBarStr = List.empty[String]
