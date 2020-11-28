@@ -1,4 +1,5 @@
 import java.io.{File, PrintWriter}
+import java.nio.file.Paths
 
 import scala.io.Source
 
@@ -14,9 +15,14 @@ object MainV2 {
     // 空的侧边栏列表
     var bars = List[Bar]()
     // 获取路径
+//    println("获取路径...")
     val readPath = getPath(args)
+//    println("readPath: "  + readPath)
     // 获取根目录
     val root = new File(readPath)
+//    println(root.getAbsolutePath)
+//    println(root.listFiles())
+//    println("===")
     // 解析所有的文件和目录
     for {
       f <- root.listFiles
@@ -37,8 +43,7 @@ object MainV2 {
     // 最后构建好SideBar
     //    构建好内容
     val content = createSideBarJson(bars)
-    //    write(content = content)
-    readConfig(readPath,content)
+    readConfig(readPath, content)
 
   }
 
@@ -51,11 +56,10 @@ object MainV2 {
    */
   def findDropEndLine(lines: Iterator[String]): Int = {
     var list = List.empty[String]
-
-    while(lines.hasNext) {
-      list = lines.next::list
+    while (lines.hasNext) {
+      list = lines.next :: list
     }
-    println("总行数：" + list.size)
+
     var lineNumber = 0
     var braceNum = 0
     var stop = false
@@ -69,24 +73,23 @@ object MainV2 {
         stop = true
       }
       if (c.contains("}") && !c.contains("//") && !c.contains("*/") && !c.contains("/*")) {
-
-//        println("执行。。。")
-//        println(c)
+        //        println("执行。。。")
+        //        println(c)
         braceNum += 1
-//        println("当前行 :" + lineNumber)
-//        println("braceNum:" + braceNum)
+        //        println("当前行 :" + lineNumber)
+        //        println("braceNum:" + braceNum)
       }
 
     }
-//  无论如何都会多加一次，所以要先减去1
+    //  无论如何都会多加一次，所以要先减去1
     lineNumber = lineNumber - 1
-//    println("当前行" + lineNumber)
-//    println("总行" + list.size)
-    list.size - (lineNumber-1)
+    //    println("当前行" + lineNumber)
+    //    println("总行" + list.size)
+    list.size - (lineNumber - 1)
   }
 
 
-  def readConfig(readPath: String,content:String): Unit = {
+  def readConfig(readPath: String, content: String): Unit = {
     val root = new java.io.File(readPath)
     //   root.listFiles().foreach(println)
     val ve = for {
@@ -101,7 +104,7 @@ object MainV2 {
     }).take(1)(0)
 
     val lines = Source.fromFile(cfg).getLines()
-//    println("lines " + lines)
+    //    println("lines " + lines)
     var counter = 0
     var startLineNumber = 0
     var stop = false
@@ -118,20 +121,21 @@ object MainV2 {
     //   lines 倒过来找第三个 }
     //   sidebar: { 作为删除开始
     // 从倒数第三个没有注释的 } 结束
-//    println(Source.fromFile(cfg).getLines())
-//    Source.fromFile(cfg).getLines().foreach(println)
+    //    println(Source.fromFile(cfg).getLines())
+    //    Source.fromFile(cfg).getLines().foreach(println)
     val endLine: Int = findDropEndLine(Source.fromFile(cfg).getLines()) // 之前的lines已经迭代用完了
-//    println("结束行:" +  endLine)
-    write(cfg,Source.fromFile(cfg).getLines().size, startLineNumber,endLine,content);
+    //    println("结束行:" +  endLine)
+    write(cfg, Source.fromFile(cfg).getLines().size, startLineNumber, endLine, content);
   }
 
 
-
-  def write(cfg:File,length:Int,startLineNumber:Int,endLine:Int,content:String) = {
+  def write(cfg: File, length: Int, startLineNumber: Int, endLine: Int, content: String) = {
+//    println(startLineNumber)
+//    println(endLine)
     var lines = Source.fromFile(cfg).getLines()
-    val top = lines.slice(0,startLineNumber)
+    val top = lines.slice(0, startLineNumber)
     lines = Source.fromFile(cfg).getLines()
-    val bottom = lines.slice(endLine-1,length)
+    val bottom = lines.slice(endLine - 1, length)
     val mid = content
 //    top.foreach(println)
 //    println("111")
@@ -139,7 +143,6 @@ object MainV2 {
 //    println("222")
 //    bottom.foreach(println)
     var finalContent = ""
-
     top.foreach(c => {
       finalContent += c + "\r\n"
     })
@@ -147,6 +150,7 @@ object MainV2 {
     bottom.foreach(c => {
       finalContent += c + "\r\n"
     })
+//    println("final内容")
 //    println(finalContent)
     val pw = new PrintWriter(cfg)
     pw.write(finalContent)
@@ -156,7 +160,6 @@ object MainV2 {
   //  def findDropEndLine()
 
   def createSideBarJson(bars: List[Bar]): String = {
-    //    var sideBarStr = List.empty[String]
     var list = List.empty[String]
     bars.foreach(c => {
       list = barJson(c) :: list
@@ -191,7 +194,7 @@ object MainV2 {
   }
 
   // 三个引号，多行字符串
-//  java15 也引入了
+  //  java15 也引入了
   def barJson(bar: Bar): String = {
     var s = bar.path + ": ["
     val tab = " " * 4
@@ -202,8 +205,8 @@ object MainV2 {
          |${tab * 4}}""".stripMargin
     })
     var s3 = ""
-  temp.foreach(println)
-//  println(temp)
+    temp.foreach(println)
+    //  println(temp)
     temp.foreach(t => {
       if (s3.equals("")) {
         // 调整的从第二个开始的 tab 不是这里
@@ -215,16 +218,13 @@ object MainV2 {
       }
     })
     s3 = s3.dropRight(1)
-    println("s3")
-  println(s3)
+    //    println(s3)
     val s4 =
       s"""${tab * 3}'${bar.path}': [
          |${s3}
          |${tab * 5}]""".stripMargin
     s4
-  println("s4")
-  println(s4)
-  s4
+    s4
   }
 
 
@@ -234,6 +234,7 @@ object MainV2 {
 
   /**
    * 处理文件夹
+   *
    * @param f
    */
   def handleDirectory(f: File): List[Children] = {
@@ -262,9 +263,9 @@ object MainV2 {
    */
   def getPath(args: Array[String]) = {
     if (args.isEmpty) {
-      "."
+      Paths.get("").toAbsolutePath.toString
     } else {
-      args(0)// 不是java风格的 args[0]
+      args(0) // 不是java风格的 args[0]
     }
   }
 }
